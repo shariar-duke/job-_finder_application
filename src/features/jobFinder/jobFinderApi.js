@@ -2,10 +2,12 @@ import axios from "../../utils/axios";
 
 // first we need to write a function to get all availabe jobs
 
-export const getAllJobs = async () => {
-  const response = await axios.get("/jobs");
-  return response.data;
-};
+export const getAllJobs = async (jobType = null) => {
+    // Construct query string
+    const queryString = jobType ? `?type_like=${jobType}` : '';
+    const response = await axios.get(`/jobs${queryString}`);
+    return response.data;
+  };
 
 // This function is for creating a new job post
 
