@@ -1,17 +1,31 @@
-// src/components/Home/Home.js
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchJobs } from "../../features/jobFinder/jobFinderSlice.js";
+import {
+  fetchJobs,
+  searchJobName,
+  showSalaryOrder,
+} from "../../features/jobFinder/jobFinderSlice.js";
 import JobItem from "../job/JobItem";
+
 export default function Home() {
+  const [jobTitle, setJobTitle] = useState(""); // State for search input
+  const [salaryOrder, setSalaryOrder] = useState("default"); // State for select box
+
   const dispatch = useDispatch();
-  const { isLoading, isError, jobs } = useSelector((state) => state.job);
+  const { isLoading, isError, jobs, jobFilter } = useSelector(
+    (state) => state.job
+  );
 
+  // Fetch jobs whenever jobTitle or salaryOrder changes
   useEffect(() => {
-    dispatch(fetchJobs());
-  }, [dispatch]);
+    dispatch(searchJobName(jobTitle)); // Update job filter in the Redux store
+    dispatch(showSalaryOrder(salaryOrder)); // Update salary order in the Redux store
+    dispatch(fetchJobs()); // Fetch jobs based on updated filters
+  }, [dispatch, jobTitle, salaryOrder]);
 
-  // decide what UI to render
+  console.log("The job Filter option is", jobFilter);
+
+  // Decide what UI to render
   let content = null;
   if (isLoading) {
     content = (
@@ -34,12 +48,28 @@ export default function Home() {
   } else {
     content = (
       <div>
-        {jobs.map((job) => (
-          <JobItem key={job.id} job={job} />
-        ))}
+        {jobs
+          .filter((job) =>
+            job.title.toLowerCase().includes(jobFilter.jobTitle.toLowerCase())
+          )    .sort((a, b) => {
+            const salaryA = parseFloat(a.salary); // Convert salary to number
+            const salaryB = parseFloat(b.salary); // Convert salary to number
+
+            if (jobFilter.jobSalaryOrder === "salary-low-to-high") {
+              return salaryA - salaryB;
+            } else if (jobFilter.jobSalaryOrder === "salary-high-to-low") {
+              return salaryB - salaryA;
+            } else {
+              return 0; // No sorting
+            }
+          })
+          .map((job) => (
+            <JobItem key={job.id} job={job} />
+          ))}
       </div>
     );
   }
+
   return (
     <div className="text-white p-4 max-w-4xl mx-auto">
       <div className="flex items-center justify-between gap-4">
@@ -47,10 +77,14 @@ export default function Home() {
         <div className="flex gap-4 items-center">
           <input
             type="search"
+            value={jobTitle} // Bind value to state
+            onChange={(e) => setJobTitle(e.target.value)} // Update state on change
             className="w-48 p-2 rounded-lg bg-gray-700 text-white border border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
             placeholder="Search..."
           />
           <select
+            value={salaryOrder} // Bind value to state
+            onChange={(e) => setSalaryOrder(e.target.value)} // Update state on change
             className="w-48 p-2 rounded-lg bg-gray-700 text-white border border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
             name="salary"
             id="salary"
@@ -61,7 +95,7 @@ export default function Home() {
           </select>
         </div>
       </div>
-      {/* job list  */}
+      {/* Job list */}
       <div className="mt-[24px]">{content}</div>
     </div>
   );
