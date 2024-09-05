@@ -1,4 +1,5 @@
-import { FaBriefcase, FaPlus } from "react-icons/fa"; // Import additional icon
+// src/components/Layout/Layout.js
+import { FaBriefcase, FaPlus } from "react-icons/fa";
 import { Outlet } from "react-router-dom";
 
 const Layout = () => {
@@ -31,7 +32,7 @@ const Layout = () => {
             </ul>
           </div>
 
-          <div className="flex items-center text-gray-50 font-bold mt-[14px] ">
+          <div className="flex items-center text-gray-50 font-bold mt-4">
             <FaPlus className="text-gray-400 mr-2" />
             <p className="cursor-pointer">Add a New Job</p>
           </div>
@@ -40,7 +41,7 @@ const Layout = () => {
 
       {/* Main Content */}
       <div className="flex-1 flex justify-center items-start p-8">
-        <main className="bg-gray-800 text-white p-6 rounded-lg shadow-lg border border-gray-700">
+        <main className="bg-gray-800 text-white p-6 rounded-lg shadow-lg border border-gray-700 w-full max-w-4xl">
           <Outlet />
         </main>
       </div>
