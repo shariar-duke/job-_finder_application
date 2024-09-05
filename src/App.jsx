@@ -1,8 +1,8 @@
 // src/App.js
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
-import AddJob from './components/AddJob/AddJob';
+import AddJob from './components/Form/AddJob';
+import Editjob from './components/Form/Editjob';
 import Home from './components/Home/Home';
-import Editjob from './components/JobForm/Editjob';
 import Layout from './components/Layout/Layout';
 
 function App() {
