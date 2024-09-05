@@ -47,6 +47,14 @@ export const removeJob = createAsyncThunk(
 const jobSlice = createSlice({
   name: "jobFinder",
   initialState: intialState,
+  reducers:{
+   editActive:(state, action)=> {
+    state.editingJob = action.payload
+   },
+   editInactive: (state) => {
+    state.editingJob = {};
+  },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(fetchJobs.pending, (state) => {
@@ -118,3 +126,4 @@ const jobSlice = createSlice({
 
 
 export default jobSlice.reducer;
+export const { editActive, editInactive } = jobSlice.actions;
