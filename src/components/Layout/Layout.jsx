@@ -1,5 +1,5 @@
 // src/components/Layout/Layout.js
-import { FaBriefcase, FaPlus } from "react-icons/fa";
+import { FaBriefcase, FaHome, FaPlus } from "react-icons/fa";
 import { Link, Outlet } from "react-router-dom";
 
 const Layout = () => {
@@ -14,7 +14,7 @@ const Layout = () => {
           <div>
             <div className="flex items-center text-gray-50 font-bold mb-4">
               <FaBriefcase className="text-gray-400 mr-2" />
-              <p>All Available Jobs</p>
+              <p className="cursor-pointer">All Available Jobs</p>
             </div>
             <ul className="mt-2 space-y-2">
               <li className="flex items-center text-gray-200 bg-gray-700 p-2 rounded-md">
@@ -35,15 +35,22 @@ const Layout = () => {
           <div className="flex items-center text-gray-50 font-bold mt-4">
             <FaPlus className="text-gray-400 mr-2" />
             <Link to="/add-job">
-            <p className="cursor-pointer">Add a New Job</p>
+              <p className="cursor-pointer">Add a New Job</p>
             </Link>
-  
           </div>
         </div>
       </aside>
 
       {/* Main Content */}
-      <div className="flex-1 flex justify-center items-start p-8   h-[96vh] overflow-y-auto">
+      <div className="flex-1 flex-col justify-center items-start p-8   h-[96vh] overflow-y-auto">
+        {/* for a navbar */}
+        <Link to="/">
+          <div className="flex items-center  h-12">
+            <FaHome size={24} className="text-gray-400" />
+            <p className="text-[20px] text-gray-400 font-medium ml-2">Home</p>
+          </div>
+        </Link>
+
         <main className="bg-gray-800 text-white p-6 rounded-lg shadow-lg border border-gray-700 w-full max-w-4xl">
           <Outlet />
         </main>
