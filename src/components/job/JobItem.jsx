@@ -1,9 +1,17 @@
 /* eslint-disable react/prop-types */
 
 import { FaCalendarAlt, FaEdit, FaTrash } from "react-icons/fa";
-
+import { useDispatch } from "react-redux";
+import { removeJob } from "../../features/jobFinder/jobFinderSlice";
 export default function JobItem({ job }) {
-  const { title, type, salary, deadline } = job;
+  const { title, type, salary, deadline , id } = job;
+  const dispatch = useDispatch()
+
+  const handleDeleteJob =()=> 
+  { 
+  
+     dispatch(removeJob(id))
+  }
   return (
     <div className="bg-gray-800 text-gray-200 p-4 rounded-lg">
       {/* Title and Buttons */}
@@ -13,8 +21,8 @@ export default function JobItem({ job }) {
           <button className="bg-sky-400 text-gray-200 py-2 rounded flex items-center hover:bg-sky-500 w-[90px] px-[20px]">
             <FaEdit size={18} className="mr-1" /> Edit
           </button>
-          <button className="bg-orange-500 text-gray-200 py-2 rounded flex items-center hover:bg-orange-600 w-[90px] px-[10px]">
-            <FaTrash className="mr-1" /> Delete
+          <button onClick={handleDeleteJob} className="bg-orange-500 text-gray-200 py-2 rounded flex items-center hover:bg-orange-600 w-[90px] px-[10px]">
+            <FaTrash  className="mr-1" /> Delete
           </button>
         </div>
       </div>
