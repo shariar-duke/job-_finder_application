@@ -1,21 +1,41 @@
-import { Link, Outlet } from 'react-router-dom';
+import { FaBriefcase, FaPlus } from "react-icons/fa"; // Import additional icon
+import { Outlet } from "react-router-dom";
 
 const Layout = () => {
   return (
     <div className="flex h-screen bg-gray-900">
       {/* Sidebar */}
-      <aside className="w-72 bg-gray-800 p-4">
-        <div className="text-white text-xl font-bold mb-8">Logo</div>
-        <nav>
-          <ul className="space-y-4">
-            <li>
-              <Link to="/" className="text-gray-200 hover:bg-gray-700 px-4 py-2 rounded">HomePage</Link>
-            </li>
-            <li>
-              <Link to="/add-job" className="text-gray-200 hover:bg-gray-700 px-4 py-2 rounded">Add New Job</Link>
-            </li>
-          </ul>
-        </nav>
+      <aside className="w-72 bg-gray-800 p-4 flex flex-col justify-between">
+        <div>
+          <div className="text-white text-xl font-bold mb-8">
+            <img src="/logo.svg" alt="Logo" />
+          </div>
+          <div>
+            <div className="flex items-center text-gray-50 font-bold mb-4">
+              <FaBriefcase className="text-gray-400 mr-2" />
+              <p>All Available Jobs</p>
+            </div>
+            <ul className="mt-2 space-y-2">
+              <li className="flex items-center text-gray-200 bg-gray-700 p-2 rounded-md">
+                <span className="block w-3 h-3 bg-red-500 mr-2 rounded-full"></span>
+                <p className="cursor-pointer">Internship</p>
+              </li>
+              <li className="flex items-center text-gray-200 bg-gray-700 p-2 rounded-md">
+                <span className="block w-3 h-3 bg-orange-500 mr-2 rounded-full"></span>
+                <p className="cursor-pointer">Full Time</p>
+              </li>
+              <li className="flex items-center text-gray-200 bg-gray-700 p-2 rounded-md">
+                <span className="block w-3 h-3 bg-teal-400 mr-2 rounded-full"></span>
+                <p className="cursor-pointer">Remote</p>
+              </li>
+            </ul>
+          </div>
+
+          <div className="flex items-center text-gray-50 font-bold mt-[14px] ">
+            <FaPlus className="text-gray-400 mr-2" />
+            <p className="cursor-pointer">Add a New Job</p>
+          </div>
+        </div>
       </aside>
 
       {/* Main Content */}
