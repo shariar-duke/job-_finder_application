@@ -1,8 +1,17 @@
-// src/components/Layout/Layout.js
 import { FaBriefcase, FaHome, FaPlus } from "react-icons/fa";
+import { useDispatch } from "react-redux";
 import { Link, Outlet } from "react-router-dom";
+import { fetchJobs } from "../../features/jobFinder/jobFinderSlice.js";
 
 const Layout = () => {
+  const dispatch = useDispatch();
+
+  // Handle filter selection
+  const handleFilterClick = (filter) => {
+  
+    dispatch(fetchJobs(filter)); // Fetch jobs based on selected filter
+  };
+
   return (
     <div className="flex h-screen bg-gray-900">
       {/* Sidebar */}
@@ -14,20 +23,29 @@ const Layout = () => {
           <div>
             <div className="flex items-center text-gray-50 font-bold mb-4">
               <FaBriefcase className="text-gray-400 mr-2" />
-              <p className="cursor-pointer">All Available Jobs</p>
+              <p  onClick={() => handleFilterClick()} className="cursor-pointer">All Available Jobs</p>
             </div>
             <ul className="mt-2 space-y-2">
-              <li className="flex items-center text-gray-200 bg-gray-700 p-2 rounded-md">
+              <li
+                onClick={() => handleFilterClick("Internship")}
+                className="flex items-center text-gray-200 bg-gray-700 p-2 rounded-md cursor-pointer"
+              >
                 <span className="block w-3 h-3 bg-red-500 mr-2 rounded-full"></span>
-                <p className="cursor-pointer">Internship</p>
+                <p>Internship</p>
               </li>
-              <li className="flex items-center text-gray-200 bg-gray-700 p-2 rounded-md">
+              <li
+                onClick={() => handleFilterClick("Full Time")}
+                className="flex items-center text-gray-200 bg-gray-700 p-2 rounded-md cursor-pointer"
+              >
                 <span className="block w-3 h-3 bg-orange-500 mr-2 rounded-full"></span>
-                <p className="cursor-pointer">Full Time</p>
+                <p>Full Time</p>
               </li>
-              <li className="flex items-center text-gray-200 bg-gray-700 p-2 rounded-md">
+              <li
+                onClick={() => handleFilterClick("Remote")}
+                className="flex items-center text-gray-200 bg-gray-700 p-2 rounded-md cursor-pointer"
+              >
                 <span className="block w-3 h-3 bg-teal-400 mr-2 rounded-full"></span>
-                <p className="cursor-pointer">Remote</p>
+                <p>Remote</p>
               </li>
             </ul>
           </div>
@@ -42,10 +60,10 @@ const Layout = () => {
       </aside>
 
       {/* Main Content */}
-      <div className="flex-1 flex-col justify-center items-start p-8   h-[96vh] overflow-y-auto">
+      <div className="flex-1 flex-col justify-center items-start p-8 h-[96vh] overflow-y-auto">
         {/* for a navbar */}
         <Link to="/">
-          <div className="flex items-center  h-12">
+          <div className="flex items-center h-12">
             <FaHome size={24} className="text-gray-400" />
             <p className="text-[20px] text-gray-400 font-medium ml-2">Home</p>
           </div>
