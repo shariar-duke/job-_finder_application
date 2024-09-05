@@ -69,7 +69,7 @@ const Layout = () => {
           </div>
         </Link>
 
-        <main className="bg-gray-800 text-white p-6 rounded-lg shadow-lg border border-gray-700 w-full max-w-4xl">
+        <main className="bg-gray-800 text-white p-6 rounded-lg shadow-lg border border-gray-700 w-full lg:max-w-4xl xl:max-w-6xl">
           <Outlet />
         </main>
       </div>
