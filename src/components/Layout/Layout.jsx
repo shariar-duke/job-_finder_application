@@ -1,6 +1,6 @@
 // src/components/Layout/Layout.js
 import { FaBriefcase, FaPlus } from "react-icons/fa";
-import { Outlet } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
 
 const Layout = () => {
   return (
@@ -34,7 +34,10 @@ const Layout = () => {
 
           <div className="flex items-center text-gray-50 font-bold mt-4">
             <FaPlus className="text-gray-400 mr-2" />
+            <Link to="/add-job">
             <p className="cursor-pointer">Add a New Job</p>
+            </Link>
+  
           </div>
         </div>
       </aside>
