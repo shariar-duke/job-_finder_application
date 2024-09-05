@@ -2,15 +2,22 @@
 
 import { FaCalendarAlt, FaEdit, FaTrash } from "react-icons/fa";
 import { useDispatch } from "react-redux";
-import { removeJob } from "../../features/jobFinder/jobFinderSlice";
+import { useNavigate } from "react-router-dom";
+import { editActive, removeJob } from "../../features/jobFinder/jobFinderSlice";
 export default function JobItem({ job }) {
   const { title, type, salary, deadline , id } = job;
   const dispatch = useDispatch()
-
+  const navigate = useNavigate()
   const handleDeleteJob =()=> 
   { 
   
      dispatch(removeJob(id))
+  }
+
+  const handleEditSelect = ()=> 
+  {
+    dispatch(editActive(job))
+    navigate("/edit-job")
   }
   return (
     <div className="bg-gray-800 text-gray-200 p-4 rounded-lg">
@@ -18,7 +25,7 @@ export default function JobItem({ job }) {
       <div className="flex justify-between items-center">
         <h2 className="text-[24px] font-semibold text-gray-100">{title}</h2>
         <div className="flex space-x-2">
-          <button className="bg-sky-400 text-gray-200 py-2 rounded flex items-center hover:bg-sky-500 w-[90px] px-[20px]">
+          <button  onClick={handleEditSelect} className="bg-sky-400 text-gray-200 py-2 rounded flex items-center hover:bg-sky-500 w-[90px] px-[20px]">
             <FaEdit size={18} className="mr-1" /> Edit
           </button>
           <button onClick={handleDeleteJob} className="bg-orange-500 text-gray-200 py-2 rounded flex items-center hover:bg-orange-600 w-[90px] px-[10px]">
