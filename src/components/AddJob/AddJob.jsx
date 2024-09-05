@@ -1,9 +1,8 @@
-import React from "react";
 
 const AddJob = () => {
   return (
     <div className="text-white p-6 max-w-3xl mx-auto bg-gray-800 rounded-lg shadow-lg">
-      <h1 className="text-2xl font-bold mb-6">Add New Job</h1>
+      <h1 className="text-2xl font-bold mb-6 text-center">Add New Job</h1>
       <form className="space-y-4">
         {/* Job Title */}
         <div className="flex items-center">
