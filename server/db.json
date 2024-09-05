@@ -41,6 +41,20 @@
       "salary": "18000",
       "deadline": "2023-12-31",
       "id": 7
+    },
+    {
+      "title": "Frontend Inter",
+      "type": "Internship",
+      "salary": "6000",
+      "deadline": "2024-09-21",
+      "id": 8
+    },
+    {
+      "title": "Aws Einginner",
+      "type": "Full Time",
+      "salary": "1600",
+      "deadline": "2024-09-28",
+      "id": 9
     }
   ]
 }
