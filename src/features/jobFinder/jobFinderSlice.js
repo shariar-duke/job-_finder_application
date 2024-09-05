@@ -11,8 +11,8 @@ const intialState = {
 
 export const fetchJobs = createAsyncThunk(
   "jobFinder/fetchjobs",
-  async () => {
-    const jobs = await getAllJobs();
+  async (jobType = null) => {
+    const jobs = await getAllJobs(jobType);
     return jobs;
   }
 );
