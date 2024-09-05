@@ -43,7 +43,7 @@ const Layout = () => {
       </aside>
 
       {/* Main Content */}
-      <div className="flex-1 flex justify-center items-start p-8">
+      <div className="flex-1 flex justify-center items-start p-8   h-[96vh] overflow-y-auto">
         <main className="bg-gray-800 text-white p-6 rounded-lg shadow-lg border border-gray-700 w-full max-w-4xl">
           <Outlet />
         </main>
