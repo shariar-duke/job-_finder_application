@@ -1,4 +1,5 @@
 // src/components/Home/Home.js
+import JobItem from "../job/JobItem";
 export default function Home() {
     return (
       <div className="text-white p-4 max-w-4xl mx-auto">
@@ -20,6 +21,12 @@ export default function Home() {
               <option value="salary-high-to-low">Salary (High to Low)</option>
             </select>
           </div>
+        </div>
+         {/* job list  */}
+        <div className="mt-[24px]">
+            <JobItem/>
+            <JobItem/>
+            <JobItem/>
         </div>
       </div>
     );
